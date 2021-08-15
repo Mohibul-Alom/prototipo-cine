@@ -12,6 +12,8 @@ import { AppProfileComponent } from './pages/app-profile/app-profile.component';
 import { AppLogInComponent } from './pages/app-log-in/app-log-in.component';
 import { AppRegisterComponent } from './pages/app-register/app-register.component';
 import { AppBookingComponent } from './pages/app-booking/app-booking.component';
+import { AppHomeComponent } from './pages/app-home/app-home.component';
+import { AppMovieComponent } from './pages/app-movie/app-movie.component';
 
 
 
@@ -22,11 +24,14 @@ import { AppBookingComponent } from './pages/app-booking/app-booking.component';
     AppProfileComponent,
     AppLogInComponent,
     AppRegisterComponent,
-    AppBookingComponent
+    AppBookingComponent,
+    AppHomeComponent,
+    AppMovieComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [GlobalService],
   bootstrap: [AppComponent]
