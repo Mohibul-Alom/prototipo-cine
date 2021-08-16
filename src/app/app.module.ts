@@ -14,6 +14,7 @@ import { AppRegisterComponent } from './pages/app-register/app-register.componen
 import { AppBookingComponent } from './pages/app-booking/app-booking.component';
 import { AppHomeComponent } from './pages/app-home/app-home.component';
 import { AppMovieComponent } from './pages/app-movie/app-movie.component';
+import { AppPageNotFoundComponent } from './pages/app-page-not-found/app-page-not-found.component';
 
 
 
@@ -26,7 +27,8 @@ import { AppMovieComponent } from './pages/app-movie/app-movie.component';
     AppRegisterComponent,
     AppBookingComponent,
     AppHomeComponent,
-    AppMovieComponent
+    AppMovieComponent,
+    AppPageNotFoundComponent
   ],
   imports: [
     BrowserModule,
