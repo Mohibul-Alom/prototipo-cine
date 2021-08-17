@@ -1,1 +1,19 @@
 <p>app-home works!</p>
+
+<div class="container">
+    <div class="row">
+        <div class="col-12" *ngFor="let movie of myMoviesList">
+            <div class="card m-3">
+                <div class="card-body">
+                    <div>
+                        <img class="b-movie__img" src={{movie.image}} alt={{movie.title}}>
+                    </div>
+                    <h5 class="card-title">{{movie.title}}</h5>
+                    <p class="card-text">Genere: {{movie.genere}}</p>
+                    <p class="card-text">Duration: {{movie.duration}} min</p>
+                    <a href="/login" class="btn btn-primary">Buy!</a>
+                </div>                
+            </div>
+        </div>
+    </div>
+</div>
