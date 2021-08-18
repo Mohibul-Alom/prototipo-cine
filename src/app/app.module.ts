@@ -15,6 +15,7 @@ import { AppBookingComponent } from './pages/app-booking/app-booking.component';
 import { AppHomeComponent } from './pages/app-home/app-home.component';
 import { AppMovieComponent } from './pages/app-movie/app-movie.component';
 import { AppPageNotFoundComponent } from './pages/app-page-not-found/app-page-not-found.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -33,7 +34,8 @@ import { AppPageNotFoundComponent } from './pages/app-page-not-found/app-page-no
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbModule
   ],
   providers: [GlobalService],
   bootstrap: [AppComponent]
