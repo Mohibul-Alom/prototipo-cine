@@ -27,6 +27,13 @@
 
 }
 
+
+.seat:not(.occupied):hover {
+    /* Selecting seats that do not have "occupied" class */
+    cursor: pointer;
+    transform: scale(1.2);
+}
+
 .screen {
     background-color: #80cbc4;
     width: 300px;
@@ -46,10 +53,11 @@
     position: relative;
 }
 
+
 .numRow{
     position:absolute;
     top:50%;
-    left: -2%;
+    left: -1.5%;
     transform: translate(-50%, -50%);
 }
 .letterColumn{
