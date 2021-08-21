@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+
+
+.seat {
+
+    margin: 5px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+
+    height: 26px;
+    width: 30px;
+    background: #01163e;
+    border: 2px solid #314c81;
+    transition: all .2s ease;
+
+    &__text{
+        text-align: center;
+    }
+
+    &.selected {
+        background-color: #31d7a9; 
+    }
+
+    &.occupied {
+        background-color: #fff;
+    }
+
+}
+
+.screen {
+    background-color: #80cbc4;
+    width: 300px;
+    height: 112px;
+    margin: 0px 30px;
+    transform: rotateX(-45deg);
+    box-shadow: 0 3px 10px rgba(255, 255, 255, 1);
+    animation: fadeIn 4s;
+}
+
+.movie-container {
+    perspective: 1000px;
+    margin-bottom: 30px;
+}
+
+.seatRow{
+    position: relative;
+}
+
+.numRow{
+    position:absolute;
+    top:50%;
+    left: -2%;
+    transform: translate(-50%, -50%);
+}
+.letterColumn{
+    margin:0px 5px;
+    height: 26px;
+    width: 30px;
+    text-align: center;
+}
