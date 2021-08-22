@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AppBookingComponent } from './pages/app-booking/app-booking.component';
 import { AppHomeComponent } from './pages/app-home/app-home.component';
 import { AppLogInComponent } from './pages/app-log-in/app-log-in.component';
 import { AppMovieComponent } from './pages/app-movie/app-movie.component';
@@ -33,7 +32,8 @@ const routes: Routes = [
     path: 'register',component:AppRegisterComponent,
   },
   {
-    path: 'booking',component:AppBookingComponent,
+    path: 'booking',
+    loadChildren:() => import('./pages/app-booking/app-booking.module').then(module => module.AppBookingModule),
   },
   {
     path:'**', component:AppPageNotFoundComponent,
