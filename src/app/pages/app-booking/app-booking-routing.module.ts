@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { BookingOptionComponent } from './components/booking-view/booking-option/booking-option.component';
-import { BookingSeatsComponent } from './components/booking-view/booking-seats/booking-seats.component';
+import { BookingOptionComponent } from './components/booking-option/booking-option.component';
+import { BookingSeatsComponent } from './components/booking-seats/booking-seats.component';
+
 
 export const routes: Routes = [
   {
