@@ -1,11 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { BookingViewComponent } from './components/booking-view/booking-view.component';
+import { BookingOptionComponent } from './components/booking-view/booking-option/booking-option.component';
+import { BookingSeatsComponent } from './components/booking-view/booking-seats/booking-seats.component';
 
-const routes: Routes = [
+export const routes: Routes = [
   {
     path:'',
-    component: BookingViewComponent,
+    component: BookingOptionComponent,
+  },
+  {
+    path:'seats/:id',
+    component: BookingSeatsComponent,
   } 
 ];
 
