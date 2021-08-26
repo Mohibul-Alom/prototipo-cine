@@ -18,16 +18,20 @@ export class AppHomeComponent implements OnInit {
   }
 
   public getMoviesList():void {
-    this.globalService.getMovies().subscribe((data:any)=>{
+    this.globalService.getMovies().subscribe(
+      (data:any)=>{
       
-      data.forEach((element:Imovie)=>{
+        data.forEach((element:Imovie)=>{
 
-        let auxMovie:Imovie = this.transformData(element);
-        this.myMoviesList?.push(auxMovie);
-      })
-
-    });
-    console.log("getMovies: ",this.myMoviesList)
+          let auxMovie:Imovie = this.transformData(element);
+          this.myMoviesList?.push(auxMovie);
+        })
+      },
+      (err: any)=>{
+        console.log(err);
+      }
+    );
+    // console.log("getMovies: ",this.myMoviesList)
   }
 
   private transformData(data:Imovie):Imovie{
