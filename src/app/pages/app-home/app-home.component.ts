@@ -53,18 +53,14 @@ export class AppHomeComponent implements OnInit {
   }
 
   public showDefinition(event:any){
-    console.log(event.type);
-    console.log("id-->",event.target.id)
     const id = event.target.id;
 
     const title = (document.getElementById(`title_${id}`) as HTMLElement);
     const btn = (document.getElementById(`btn_${id}`) as HTMLElement);
-    const info = (document.getElementById(`info_${id}`) as HTMLElement);
 
     if(btn !== null && title !==null){
       btn.style.display = event.type === "mouseenter" ? "block" : "none";
       title.style.display = event.type === "mouseenter" ? "block" : "none";
-      info.style.display = event.type === "mouseenter" ? "block" : "none";
     }
     
 

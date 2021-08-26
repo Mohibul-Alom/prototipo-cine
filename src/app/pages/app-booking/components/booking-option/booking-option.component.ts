@@ -30,7 +30,7 @@ export class BookingOptionComponent implements OnInit {
     this.bookingService.getMoviesByName(name).subscribe(
       (data: any) => {
         this.movieDetail = this.transformDataMovie(data[0]);
-        console.log("AQUI ESTA TU PUTA PELICULA-->",this.movieDetail)
+        console.log("linea 33-->",this.movieDetail)
         this.getAuditorium(this.movieDetail._id);
       },
       (err: any) => {
@@ -59,7 +59,7 @@ export class BookingOptionComponent implements OnInit {
 
     this.bookingService.getAuditoriumByMovieId(id).subscribe(
       (data: any)=>{
-        console.log("AQUI TIENE TUS PUTAS SALAS-->",data); //TODO: transformar los datos del back
+        console.log("Linea 63-->",data); //TODO: transformar los datos del back
       },
       (err: any)=>{
         console.error(err);
