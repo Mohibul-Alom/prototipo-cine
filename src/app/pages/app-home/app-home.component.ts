@@ -52,4 +52,16 @@ export class AppHomeComponent implements OnInit {
 
   }
 
+  public showDefinition(event:any){
+    console.log(event.type);
+    const id = event.path[0].childNodes[0].id;
+    const btn = (document.getElementById(`btn_${id}`) as HTMLElement);
+
+    if(btn != null){
+      btn.style.display = event.type === "mouseenter" ? "block" : "none";
+    }
+    
+
+  }
+
 }
