@@ -1,6 +1,6 @@
 import { Component, OnInit, SimpleChanges } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Imovie } from 'src/app/models/iapi';
+import { IapiMovie } from 'src/app/models/iapi';
 import { BookingService } from '../../services/booking.service';
 
 @Component({
@@ -10,7 +10,7 @@ import { BookingService } from '../../services/booking.service';
 })
 export class BookingOptionComponent implements OnInit {
   public name!: string;
-  public movieDetail?: Imovie;
+  public movieDetail?: IapiMovie;
 
   constructor(
     private route: ActivatedRoute,
@@ -39,10 +39,10 @@ export class BookingOptionComponent implements OnInit {
     );
   }
 
-  private transformDataMovie(data: Imovie): Imovie {
+  private transformDataMovie(data: IapiMovie): IapiMovie {
     const { _id, title, director, description, duration, image, genere } = data;
 
-    let auxMovie: Imovie = {
+    let auxMovie: IapiMovie = {
       _id,
       title,
       director,

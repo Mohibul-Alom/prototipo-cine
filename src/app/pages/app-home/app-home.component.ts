@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Imovie } from 'src/app/models/iapi';
+import { IapiMovie } from 'src/app/models/iapi';
 import { GlobalService } from 'src/app/services/global.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { GlobalService } from 'src/app/services/global.service';
 })
 export class AppHomeComponent implements OnInit {
 
-  public myMoviesList?:Imovie[] = [];
+  public myMoviesList?:IapiMovie[] = [];
 
   constructor(private globalService:GlobalService) { }
 
@@ -21,9 +21,9 @@ export class AppHomeComponent implements OnInit {
     this.globalService.getMovies().subscribe(
       (data:any)=>{
       
-        data.forEach((element:Imovie)=>{
+        data.forEach((element:IapiMovie)=>{
 
-          let auxMovie:Imovie = this.transformData(element);
+          let auxMovie:IapiMovie = this.transformData(element);
           this.myMoviesList?.push(auxMovie);
         })
       },
@@ -34,11 +34,11 @@ export class AppHomeComponent implements OnInit {
     // console.log("getMovies: ",this.myMoviesList)
   }
 
-  private transformData(data:Imovie):Imovie{
+  private transformData(data:IapiMovie):IapiMovie{
 
     const {_id,title,director,description,duration,image,genere} = data;
 
-    let auxMovie:Imovie = {
+    let auxMovie:IapiMovie = {
       _id,
       title,
       director,

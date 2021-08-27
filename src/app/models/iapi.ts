@@ -2,17 +2,17 @@ export interface Iapi {
 }
 
 
-export interface Imovie {
+export interface IapiMovie {
     _id: string;
     title: string;
     director:string;
     description:string;
     duration:number;
     image: string;
-    genere: Igenere[];
+    genere: IapiGenere[];
 
 }
 
-export interface Igenere {
+export interface IapiGenere {
     category: string;
 }
