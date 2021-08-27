@@ -1,3 +1,5 @@
+import { IapiMovie, IapiSeat } from "./iapi";
+
 export interface Iapp {
 }
 
@@ -7,3 +9,19 @@ export interface Iheader{
     navigate:string;
 }
 
+export interface IappAuditorium {
+    _id: string;
+    name: string;
+    capacity: number;
+    sessions: IappSession[];
+    movie:IapiMovie;
+    seats:IapiSeat[];
+}
+
+export interface IappSession {
+    position: number;
+    day: string;
+    month: string;
+    hour: string;
+    minute: string;
+}
