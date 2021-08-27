@@ -3,3 +3,44 @@
     width: 100%;
     background-color:bisque;
 }
+
+.b-detailCard{
+    background-color:white;
+    box-shadow: 10px 10px 10px #0009;
+    border-radius:0px 0px 10px 10px;
+    text-align: center;
+    font-size:16px;
+    &__img{
+        border-radius: 10px 10px 0px 0px;
+    }
+
+    &__sinopsis{
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 5; /* number of lines to show */
+        -webkit-box-orient: vertical;
+    }
+
+}
+
+@media (min-width: 992px){
+
+    .b-detailCard{
+        border-radius:0px 10px 10px 0px;
+    
+        &__img{
+            border-radius: 10px 0px 0px 10px;
+        }
+        &__sinopsis{
+            overflow: unset;
+            text-overflow: unset;
+            display: -webkit-box;
+            -webkit-line-clamp: unset;
+            -webkit-box-orient: vertical;
+        }
+    
+    }
+
+
+}
