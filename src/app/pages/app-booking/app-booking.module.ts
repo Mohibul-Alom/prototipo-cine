@@ -5,16 +5,19 @@ import { AppBookingRoutingModule } from './app-booking-routing.module';
 import { BookingOptionComponent } from './components/booking-option/booking-option.component';
 import { BookingSeatsComponent } from './components/booking-seats/booking-seats.component';
 
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 
 @NgModule({
   declarations: [
     BookingOptionComponent,
-    BookingSeatsComponent
+    BookingSeatsComponent,
   ],
   imports: [
     CommonModule,
-    AppBookingRoutingModule
+    AppBookingRoutingModule,
+    ReactiveFormsModule
   ]
 })
 export class AppBookingModule { }

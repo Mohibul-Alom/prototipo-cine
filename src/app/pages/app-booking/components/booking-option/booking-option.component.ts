@@ -3,16 +3,23 @@ import { ActivatedRoute } from '@angular/router';
 import { IapiAuditorium, IapiMovie } from 'src/app/models/iapi';
 import { IappAuditorium, IappSession } from 'src/app/models/iapp';
 import { BookingService } from '../../services/booking.service';
+import {FormControl, FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-booking-option',
   templateUrl: './booking-option.component.html',
   styleUrls: ['./booking-option.component.scss'],
 })
+
 export class BookingOptionComponent implements OnInit {
+
   public name!: string;
   public movieDetail?: IapiMovie;
   public auditoriums: IappAuditorium[] = [];
+  public session: IappSession[] = [];
+
+  public form!:FormGroup;
+
 
   constructor(
     private route: ActivatedRoute,
@@ -25,6 +32,11 @@ export class BookingOptionComponent implements OnInit {
     });
 
     this.getMovies(this.name);
+
+    this.form = new FormGroup({
+      state: new FormControl(this.auditoriums[0]),
+    });
+    console.log(this.form.value)
   }
 
   public getMovies(name: string): void {
@@ -51,6 +63,16 @@ export class BookingOptionComponent implements OnInit {
     );
   }
 
+  public showSessions(data: string){
+    console.log(data);
+    this.auditoriums.forEach(auditorium => {
+      if(auditorium._id === data){
+        console.log(auditorium.sessions);
+
+      }
+    })
+  }
+
   private transformDataAuditorium(data: IapiAuditorium[]) {
 
     data.forEach((auditorium: IapiAuditorium) => {
@@ -62,7 +84,7 @@ export class BookingOptionComponent implements OnInit {
 
         let auxSession = this.trasformDate(session, index)
 
-        if(auxSession !== null){
+        if(auxSession !== null){ //TODO: quitar el nulo
           auxSessions?.push(auxSession);
         }
 
@@ -111,7 +133,7 @@ export class BookingOptionComponent implements OnInit {
     let today = new Date();
 
     if (today > dateSession) {
-      return null;
+      return null; //TODO: hay que quitar null posible solucion back
     } else {
       auxAppSession = {
         position: index,

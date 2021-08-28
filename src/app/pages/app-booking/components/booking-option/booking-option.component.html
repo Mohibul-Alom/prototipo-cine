@@ -32,11 +32,35 @@
 <div class="d-flex flex-column justify-content-center">
   <h4 class="text-center">Choose an Auditorium</h4>
   <div class="d-flex justify-content-center">
-    <select class="form-select" aria-label="Default select example">
-      <option selected>None</option>
-      <option value="1">One</option>
-      <option value="2">Two</option>
-      <option value="3">Three</option>
-    </select>
+    
+    <form [formGroup]="form">
+      <select formControlName="state">
+        <option value="" disabled>Choose an option</option>
+        <option value={{this.auditorium._id}} *ngFor="let auditorium of this.auditoriums">
+          {{ this.auditorium.name }}
+        </option>
+      </select>
+      <button (click)="showSessions(form.value.state)" >Show Sessions</button>
+    </form>
+    
   </div>
+  
+  <p>Form value: {{ form.value | json }}</p> 
+  <!-- TODO: render sesions -->
+  
+
+</div>
+
+<div *ngFor="let auditorium of this.auditoriums">
+  <p>{{this.auditorium.name}}</p>
+  <div *ngFor="let session of this.auditorium.sessions">
+      <span>Day: {{session.day}} ,</span>
+      <span>Month: {{session.month}}</span>
+      <br>
+      <span>Hour: {{session.hour}} ,</span>
+      <span>Minute: {{session.minute}}</span>
+      <br>
+      <br>
+  </div>
+
 </div>

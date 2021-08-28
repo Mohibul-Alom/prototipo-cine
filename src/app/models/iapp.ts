@@ -13,7 +13,7 @@ export interface IappAuditorium {
     _id: string;
     name: string;
     capacity: number;
-    sessions: IappSession[] | null;
+    sessions: IappSession[] | null; // TODO: hay que quitar el nulo
     movie:IapiMovie;
     seats:IapiSeat[];
 }
