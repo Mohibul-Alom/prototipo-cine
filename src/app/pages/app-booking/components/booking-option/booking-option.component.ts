@@ -78,21 +78,14 @@ export class BookingOptionComponent implements OnInit {
     data.forEach((auditorium: IapiAuditorium) => {
       const { _id, name, capacity, sessions, movie, seats } = auditorium;
 
-      let auxSessions: IappSession[] | null = [];
+      let auxSessions: IappSession[] = [];
 
       sessions.forEach((session: Date, index: number) => {
 
         let auxSession = this.trasformDate(session, index)
-
-        if(auxSession !== null){ //TODO: quitar el nulo
-          auxSessions?.push(auxSession);
-        }
+        auxSessions.push(auxSession);
 
       });
-
-      if(auxSessions.length === 0){
-        auxSessions = null;
-      }
 
       let auxAuditorium: IappAuditorium = {
         _id,
@@ -125,16 +118,10 @@ export class BookingOptionComponent implements OnInit {
     return auxMovie;
   }
 
-  private trasformDate(data: Date, index: number): IappSession | null{
+  private trasformDate(data: Date, index: number): IappSession{
     let auxAppSession: IappSession;
 
     let dateSession = new Date(data);
-
-    let today = new Date();
-
-    if (today > dateSession) {
-      return null; //TODO: hay que quitar null posible solucion back
-    } else {
       auxAppSession = {
         position: index,
         day: dateSession.getDate().toString(),
@@ -144,7 +131,7 @@ export class BookingOptionComponent implements OnInit {
       };
   
       return auxAppSession;
-    }
+    
 
   }
 }
