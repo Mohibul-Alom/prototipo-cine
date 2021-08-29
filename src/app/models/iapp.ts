@@ -19,7 +19,7 @@ export interface IappAuditorium {
 }
 
 export interface IappSession {
-    position: number;
+    id: string;
     day: string;
     month: string;
     hour: string;

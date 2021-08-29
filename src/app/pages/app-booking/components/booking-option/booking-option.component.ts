@@ -3,7 +3,6 @@ import { ActivatedRoute } from '@angular/router';
 import { IapiAuditorium, IapiMovie } from 'src/app/models/iapi';
 import { IappAuditorium, IappSession } from 'src/app/models/iapp';
 import { BookingService } from '../../services/booking.service';
-import {FormControl, FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-booking-option',
@@ -16,10 +15,6 @@ export class BookingOptionComponent implements OnInit {
   public name!: string;
   public movieDetail?: IapiMovie;
   public auditoriums: IappAuditorium[] = [];
-  public session: IappSession[] = [];
-
-  public form!:FormGroup;
-
 
   constructor(
     private route: ActivatedRoute,
@@ -30,13 +25,7 @@ export class BookingOptionComponent implements OnInit {
     this.route.queryParams.subscribe((params) => {
       this.name = params['name'];
     });
-
     this.getMovies(this.name);
-
-    this.form = new FormGroup({
-      state: new FormControl(this.auditoriums[0]),
-    });
-    console.log(this.form.value)
   }
 
   public getMovies(name: string): void {
@@ -54,7 +43,7 @@ export class BookingOptionComponent implements OnInit {
   public getAuditorium(id: string) {
     this.bookingService.getAuditoriumByMovieId(id).subscribe(
       (data: any) => {
-        this.transformDataAuditorium(data); //TODO: front del auditorium
+        this.transformDataAuditorium(data);
         console.log(this.auditoriums);
       },
       (err: any) => {
@@ -63,29 +52,23 @@ export class BookingOptionComponent implements OnInit {
     );
   }
 
-  public showSessions(data: string){
-    console.log(data);
-    this.auditoriums.forEach(auditorium => {
-      if(auditorium._id === data){
-        console.log(auditorium.sessions);
-
-      }
-    })
-  }
-
   private transformDataAuditorium(data: IapiAuditorium[]) {
+
 
     data.forEach((auditorium: IapiAuditorium) => {
       const { _id, name, capacity, sessions, movie, seats } = auditorium;
 
+      this.sortByDueDate(sessions);
+
       let auxSessions: IappSession[] = [];
 
-      sessions.forEach((session: Date, index: number) => {
+      sessions.forEach((session: Date) => {
 
-        let auxSession = this.trasformDate(session, index)
+        let auxSession = this.trasformDate(session, auditorium._id)
         auxSessions.push(auxSession);
 
       });
+      console.log("auxsessions-->",auxSessions);
 
       let auxAuditorium: IappAuditorium = {
         _id,
@@ -118,12 +101,12 @@ export class BookingOptionComponent implements OnInit {
     return auxMovie;
   }
 
-  private trasformDate(data: Date, index: number): IappSession{
+  private trasformDate(data: Date, id: string): IappSession{
     let auxAppSession: IappSession;
 
     let dateSession = new Date(data);
       auxAppSession = {
-        position: index,
+        id,
         day: dateSession.getDate().toString(),
         month: `${dateSession.getMonth()+1}`,
         hour: dateSession.getHours().toString(),
@@ -131,7 +114,12 @@ export class BookingOptionComponent implements OnInit {
       };
   
       return auxAppSession;
-    
-
   }
+
+  private sortByDueDate(auxSessions: Date[]):void{
+    auxSessions.sort((date1:Date, date2:Date) =>{
+        return new Date(date1).getTime() -new Date(date2).getTime();
+    })
+  }
+  
 }
