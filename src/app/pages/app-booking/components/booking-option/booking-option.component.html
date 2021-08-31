@@ -26,7 +26,100 @@
       </div>
     </div>
   </div>
+
+  <div class="row mt-5">
+
+    <div class="col-12 d-flex justify-content-center">
+
+      <ngb-datepicker 
+      #dp [(ngModel)]="model"
+      (navigate)="date = $event.next"
+      (ngModelChange)="dateSelected(model)"
+      [minDate]="minDate"
+      [maxDate]="maxDate">
+      </ngb-datepicker>
+      
+
+      <!-- <input class="form-control" placeholder="yyyy-mm-dd" placement="top-left" 
+      [minDate]="minDate" [maxDate]="maxDate" [startDate]="startDate" ngbDatepicker #d="ngbDatepicker" 
+      (click)="d.toggle()"> -->
+      
+    </div>
+
+  </div>
+
+
+  <!-- <div class="row">
+
+    <div class="col-3 mt-3">
+
+      <label>
+        <input type="radio" name="demo" class="card-input-element d-none" id="demo1">
+        <div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+        Organization 1
+        </div>
+      </label>
+    
+    </div>
+
+    <div class="col-3 mt-3">
+
+      <label>
+        <input type="radio" name="demo" class="card-input-element d-none" id="demo1">
+        <div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+        Organization 1
+        </div>
+      </label>
+    
+    </div>
+
+  </div> -->
+
+
 </div>
+
+
+
+
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
+<!-- <form [formGroup]="form"(ngSubmit)="submit()" >
+
+  <label>
+    <input formControlName="gender" (change)="changeGender($event)" type="radio" name="demo" class="card-input-element d-none" id="demo1">
+    <div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+    Organization 1
+    </div>
+  </label>
+
+</form>
+
+
+<form [formGroup]="form" (ngSubmit)="submit()">
+           
+  <div class="form-group">
+      <label for="gender">Gender:</label>
+      <div>
+        <input id="male" type="radio" value="male" name="gender" formControlName="gender" (change)="changeGender($event)">
+        <label for="male">Male</label>
+     </div>
+
+     <div>
+        <input id="female" type="radio" value="female" name="gender" formControlName="gender" (change)="changeGender($event)">
+        <label for="female">Female</label>
+     </div>
+        
+      <div *ngIf="f.gender.touched && f.gender.invalid" class="alert alert-danger">
+          <div *ngIf="f.gender.errors?.required">Name is required.</div>
+      </div>
+  </div>
+  
+  <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Submit</button>
+</form> -->
+
+
 
 <!-- TODO: select day with radio https://jsfiddle.net/djibe89/at2cv9q1/ -->
 <!-- TODO: select day with dropdown https://www.itsolutionstuff.com/post/how-to-add-on-change-event-on-dropdown-in-angularexample.html -->
@@ -50,7 +143,7 @@
     
   </div>
   
-  <p>Form value: {{ form.value | json }}</p> 
+  <p>Form value: {{ form.value | json }}</p> -->
   <!-- TODO: render sesions -->
   
 

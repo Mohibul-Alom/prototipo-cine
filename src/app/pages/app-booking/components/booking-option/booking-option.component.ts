@@ -1,5 +1,7 @@
 import { Component, OnInit, SimpleChanges } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { NgbCalendar, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { IapiAuditorium, IapiMovie } from 'src/app/models/iapi';
 import { IappAuditorium, IappSession } from 'src/app/models/iapp';
 import { BookingService } from '../../services/booking.service';
@@ -16,16 +18,32 @@ export class BookingOptionComponent implements OnInit {
   public movieDetail?: IapiMovie;
   public auditoriums: IappAuditorium[] = [];
 
+  public today:Date = new Date();
+  public nextMonth:Date = new Date(new Date().setDate(this.today.getDate() + 30));
+
+  public minDate!:{ year: number; month: number; day: number};
+  public maxDate!:{ year: number; month: number; day: number};
+
+  public model!: NgbDateStruct;
+  public date!: { year: number; month: number; };
+
   constructor(
     private route: ActivatedRoute,
-    private bookingService: BookingService
-  ) {}
+    private bookingService: BookingService,
+    ) {}
+
 
   ngOnInit() {
     this.route.queryParams.subscribe((params) => {
       this.name = params['name'];
     });
-    this.getMovies(this.name);
+    this.getMovies(this.name);    
+    this.minDate = {year: this.today.getFullYear(), month: this.today.getMonth() + 1, day: this.today.getDate() };
+    this.maxDate = {year:this.nextMonth.getFullYear(),month: this.nextMonth.getMonth() + 1, day: this.nextMonth.getDate()};
+  }
+
+  dateSelected(model:any) {
+    console.log(model);
   }
 
   public getMovies(name: string): void {
