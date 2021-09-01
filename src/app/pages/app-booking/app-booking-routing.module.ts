@@ -10,7 +10,7 @@ export const routes: Routes = [
     component: BookingOptionComponent,
   },
   {
-    path:'seats/:id',
+    path:'seats',
     component: BookingSeatsComponent,
   } 
 ];

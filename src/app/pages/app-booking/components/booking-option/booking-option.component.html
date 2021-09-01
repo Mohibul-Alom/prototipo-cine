@@ -1,3 +1,12 @@
+<link
+  href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700"
+  rel="stylesheet"
+/>
+<link
+  href="https://fonts.googleapis.com/icon?family=Material+Icons"
+  rel="stylesheet"
+/>
+
 <div class="container mt-4 mb-4">
   <div class="row">
     <div class="col-12 col-lg-6 p-lg-0 d-flex justify-content-center">
@@ -37,20 +46,21 @@
         flex-column
       "
     >
-      <h3 class="m-3">Choose a date:</h3>
+      <div>
+        <h3 class="m-3">Choose a date:</h3>
 
-      <ngb-datepicker
-        #dp
-        [(ngModel)]="model"
-        (navigate)="date = $event.next"
-        (ngModelChange)="dateSelected(model)"
-        [minDate]="minDate"
-        [maxDate]="maxDate"
-      >
-      </ngb-datepicker>
-    </div>
+        <ngb-datepicker
+          #dp
+          [(ngModel)]="model"
+          (navigate)="date = $event.next"
+          (ngModelChange)="dateSelected(model)"
+          [minDate]="minDate"
+          [maxDate]="maxDate"
+        >
+        </ngb-datepicker>
+      </div>
 
-    <div
+      <div
       *ngIf="isSessionAvailable"
       class="
         col-12
@@ -62,55 +72,54 @@
     >
       <h3 class="m-3">Choose a session</h3>
 
-      <div class="d-flex flex-row">
+      <!-- TODO: auto scrollDown -->
 
+      <div class="d-flex flex-row" id="options">
         <div *ngFor="let option of userOptions">
           <label>
-            <input type="radio" name="options" class="card-input-element d-none" id={{option.id}} value={{option.id}}>
-            <div (click)="selectedOption(option)" class="card card-body bg-light d-flex flex-row justify-content-between align-items-center m-3"
-              id={{option.id}}
+            <input
+              type="radio"
+              name="options"
+              class="card-input-element d-none"
+              id="{{ option.id }}"
+              value="{{ option.id }}"
+            />
+            <div
+              (click)="selectedOption(option)"
+              class="
+                card card-body
+                bg-light
+                d-flex
+                flex-row
+                justify-content-between
+                align-items-center
+                m-3
+              "
+              id="{{ option.id }}"
             >
-             At {{option.hour}}:{{option.minute}}
+              At {{ option.hour }}:{{ option.minute }}
             </div>
           </label>
         </div>
       </div>
-      <div *ngIf="isSessionSelected">
+      <div *ngIf="isSessionSelected" id="btn-book">
         <a
-          [routerLink]="['/seats']"
-          [queryParams]="
-              { idAuditorium:optionChoosed.id, 
-                day:optionChoosed.day,
-                month:optionChoosed.month,
-                year:optionChoosed.year,
-                hour:optionChoosed.hour,
-                minute:optionChoosed.minute                                      
-              }"
-          href="" class="b-btnCenter">Pay Now!</a>
+          [routerLink]="['/booking/seats']"
+          [queryParams]="{
+            idAuditorium: optionChoosed.id,
+            day: optionChoosed.day,
+            month: optionChoosed.month,
+            year: optionChoosed.year,
+            hour: optionChoosed.hour,
+            minute: optionChoosed.minute
+          }"
+          href=""
+          class="b-btnCenter"
+          >Book Seats!</a
+        >
       </div>
-      
     </div>
-  </div>
-</div>
 
-<link
-  href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700"
-  rel="stylesheet"
-/>
-<link
-  href="https://fonts.googleapis.com/icon?family=Material+Icons"
-  rel="stylesheet"
-/>
-
-<div *ngFor="let auditorium of this.auditoriums">
-  <p>{{ this.auditorium.name }}</p>
-  <div *ngFor="let session of this.auditorium.sessions">
-    <span>Day: {{ session.day }} ,</span>
-    <span>Month: {{ session.month }}</span>
-    <br />
-    <span>Hour: {{ session.hour }} ,</span>
-    <span>Minute: {{ session.minute }}</span>
-    <br />
-    <br />
+    </div>
   </div>
 </div>

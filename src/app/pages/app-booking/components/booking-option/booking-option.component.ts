@@ -61,7 +61,6 @@ export class BookingOptionComponent implements OnInit {
 
     const {id, day, month, year, hour, minute } = userSelected
 
-    console.log(event);
     this.isSessionSelected = true;
 
     this.optionChoosed = {
@@ -74,7 +73,6 @@ export class BookingOptionComponent implements OnInit {
     }
 
   }
-
 
   public dateSelected(model:NgbDateStruct) {
 
@@ -90,7 +88,11 @@ export class BookingOptionComponent implements OnInit {
     })
     if(this.userOptions.length !== 0){
       this.isSessionAvailable = true;
+      window.scrollTo(0,document.body.scrollHeight);
+    }else{
+      this.isSessionAvailable = false;
     }
+
   }
 
   private getMovies(name: string): void {
@@ -109,7 +111,6 @@ export class BookingOptionComponent implements OnInit {
     this.bookingService.getAuditoriumByMovieId(id).subscribe(
       (data: any) => {
         this.transformDataAuditorium(data);
-        console.log(this.auditoriums);
       },
       (err: any) => {
         console.error(err);
@@ -133,7 +134,6 @@ export class BookingOptionComponent implements OnInit {
         auxSessions.push(auxSession);
 
       });
-      console.log("auxsessions-->",auxSessions);
 
       let auxAuditorium: IappAuditorium = {
         _id,
