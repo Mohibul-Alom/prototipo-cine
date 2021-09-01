@@ -20,8 +20,9 @@ export interface IappAuditorium {
 
 export interface IappSession {
     id: string;
-    day: string;
-    month: string;
+    day: number;
+    month: number;
+    year:number;
     hour: string;
     minute: string;
 }

@@ -28,135 +28,89 @@
   </div>
 
   <div class="row mt-5">
+    <div
+      class="
+        col-12
+        d-flex
+        justify-content-center
+        align-items-center
+        flex-column
+      "
+    >
+      <h3 class="m-3">Choose a date:</h3>
 
-    <div class="col-12 d-flex justify-content-center">
-
-      <ngb-datepicker 
-      #dp [(ngModel)]="model"
-      (navigate)="date = $event.next"
-      (ngModelChange)="dateSelected(model)"
-      [minDate]="minDate"
-      [maxDate]="maxDate">
+      <ngb-datepicker
+        #dp
+        [(ngModel)]="model"
+        (navigate)="date = $event.next"
+        (ngModelChange)="dateSelected(model)"
+        [minDate]="minDate"
+        [maxDate]="maxDate"
+      >
       </ngb-datepicker>
-      
-
-      <!-- <input class="form-control" placeholder="yyyy-mm-dd" placement="top-left" 
-      [minDate]="minDate" [maxDate]="maxDate" [startDate]="startDate" ngbDatepicker #d="ngbDatepicker" 
-      (click)="d.toggle()"> -->
-      
     </div>
 
+    <div
+      *ngIf="isSessionAvailable"
+      class="
+        col-12
+        d-flex
+        justify-content-center
+        flex-column
+        align-items-center
+      "
+    >
+      <h3 class="m-3">Choose a session</h3>
+
+      <div class="d-flex flex-row">
+
+        <div *ngFor="let option of userOptions">
+          <label>
+            <input type="radio" name="options" class="card-input-element d-none" id={{option.id}} value={{option.id}}>
+            <div (click)="selectedOption(option)" class="card card-body bg-light d-flex flex-row justify-content-between align-items-center m-3"
+              id={{option.id}}
+            >
+             At {{option.hour}}:{{option.minute}}
+            </div>
+          </label>
+        </div>
+      </div>
+      <div *ngIf="isSessionSelected">
+        <a
+          [routerLink]="['/seats']"
+          [queryParams]="
+              { idAuditorium:optionChoosed.id, 
+                day:optionChoosed.day,
+                month:optionChoosed.month,
+                year:optionChoosed.year,
+                hour:optionChoosed.hour,
+                minute:optionChoosed.minute                                      
+              }"
+          href="" class="b-btnCenter">Pay Now!</a>
+      </div>
+      
+    </div>
   </div>
-
-
-  <!-- <div class="row">
-
-    <div class="col-3 mt-3">
-
-      <label>
-        <input type="radio" name="demo" class="card-input-element d-none" id="demo1">
-        <div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
-        Organization 1
-        </div>
-      </label>
-    
-    </div>
-
-    <div class="col-3 mt-3">
-
-      <label>
-        <input type="radio" name="demo" class="card-input-element d-none" id="demo1">
-        <div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
-        Organization 1
-        </div>
-      </label>
-    
-    </div>
-
-  </div> -->
-
-
 </div>
 
-
-
-
-<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-
-<!-- <form [formGroup]="form"(ngSubmit)="submit()" >
-
-  <label>
-    <input formControlName="gender" (change)="changeGender($event)" type="radio" name="demo" class="card-input-element d-none" id="demo1">
-    <div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
-    Organization 1
-    </div>
-  </label>
-
-</form>
-
-
-<form [formGroup]="form" (ngSubmit)="submit()">
-           
-  <div class="form-group">
-      <label for="gender">Gender:</label>
-      <div>
-        <input id="male" type="radio" value="male" name="gender" formControlName="gender" (change)="changeGender($event)">
-        <label for="male">Male</label>
-     </div>
-
-     <div>
-        <input id="female" type="radio" value="female" name="gender" formControlName="gender" (change)="changeGender($event)">
-        <label for="female">Female</label>
-     </div>
-        
-      <div *ngIf="f.gender.touched && f.gender.invalid" class="alert alert-danger">
-          <div *ngIf="f.gender.errors?.required">Name is required.</div>
-      </div>
-  </div>
-  
-  <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Submit</button>
-</form> -->
-
-
-
-<!-- TODO: select day with radio https://jsfiddle.net/djibe89/at2cv9q1/ -->
-<!-- TODO: select day with dropdown https://www.itsolutionstuff.com/post/how-to-add-on-change-event-on-dropdown-in-angularexample.html -->
-<!-- TODO: select day with dropdown https://www.itsolutionstuff.com/post/how-to-add-on-change-event-on-dropdown-in-angularexample.html -->
-
-
-
-<!-- <div class="d-flex flex-column justify-content-center">
-  <h4 class="text-center">Choose an Auditorium</h4>
-  <div class="d-flex justify-content-center">
-    
-    <form [formGroup]="form">
-      <select formControlName="state">
-        <option value="" disabled>Choose an option</option>
-        <option value={{this.auditorium._id}} *ngFor="let auditorium of this.auditoriums">
-          {{ this.auditorium.name }}
-        </option>
-      </select>
-      <button (click)="showSessions(form.value.state)" >Show Sessions</button>
-    </form>
-    
-  </div>
-  
-  <p>Form value: {{ form.value | json }}</p> -->
-  <!-- TODO: render sesions -->
-  
+<link
+  href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700"
+  rel="stylesheet"
+/>
+<link
+  href="https://fonts.googleapis.com/icon?family=Material+Icons"
+  rel="stylesheet"
+/>
 
 <div *ngFor="let auditorium of this.auditoriums">
-  <p>{{this.auditorium.name}}</p>
+  <p>{{ this.auditorium.name }}</p>
   <div *ngFor="let session of this.auditorium.sessions">
-      <span>Day: {{session.day}} ,</span>
-      <span>Month: {{session.month}}</span>
-      <br>
-      <span>Hour: {{session.hour}} ,</span>
-      <span>Minute: {{session.minute}}</span>
-      <br>
-      <br>
+    <span>Day: {{ session.day }} ,</span>
+    <span>Month: {{ session.month }}</span>
+    <br />
+    <span>Hour: {{ session.hour }} ,</span>
+    <span>Minute: {{ session.minute }}</span>
+    <br />
+    <br />
   </div>
-
-</div> 
+</div>
