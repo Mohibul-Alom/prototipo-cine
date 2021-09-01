@@ -13,16 +13,16 @@ export class BookingService {
     return this.httpClient.get(`${environment.baseUrl}/movies/title/${name}`);
   }
 
-  public getAuditoriumByMovieId(movieId: string){
-    return this.httpClient.get(`${environment.baseUrl}/auditorium/movieId/${movieId}`);
-  }
-
   public getAuditorum(id:string){
     return this.httpClient.get(`${environment.baseUrl}/auditorium/${id}`);
   }
 
   public getSessionsByMovieId(movieId:string){
     return this.httpClient.get(`${environment.baseUrl}/session/movie/${movieId}`)
+  }
+
+  public getSessionById(id:string){ 
+    return this.httpClient.get(`${environment.baseUrl}/session/${id}`);
   }
 
 

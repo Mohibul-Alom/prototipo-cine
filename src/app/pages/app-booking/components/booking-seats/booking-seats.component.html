@@ -33,129 +33,15 @@
             <div class="screen"></div>
           </div>
         </div>
-        
-        <!-- TODO: change row to letters and columns to number -->
+
         <div class="col-12 d-flex flex-column justify-content-center align-items-center"> 
           <div class="seatRow">
-            <div class="d-flex justify-content-center">
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
+            <div *ngFor="let seatRow of seatRows" class="d-flex justify-content-center">
+              <div *ngFor="let seat of seatRow" id={{seat._id}} class="seat text-center">{{seat.row}}{{seat.number}}</div>
             </div>
-            <span class="numRow">A</span>
+
           </div>
-  
-          <div class="seatRow">
-            <div class="d-flex justify-content-center">
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-            </div>
-            <span class="numRow">B</span>
-          </div>
-  
-          <div class="seatRow">
-            <div class="d-flex justify-content-center">
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-            </div>
-            <span class="numRow">C</span>
-          </div>
-  
-          <div class="seatRow">
-            <div class="d-flex justify-content-center">
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-            </div>
-            <span class="numRow">D</span>
-          </div>
-          <div class="seatRow">
-            <div class="d-flex justify-content-center">
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-            </div>
-            <span class="numRow">E</span>
-          </div>
-          <div class="seatRow">
-            <div class="d-flex justify-content-center">
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-            </div>
-            <span class="numRow">F</span>
-          </div>
-          <div class="seatRow">
-            <div class="d-flex justify-content-center">
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-            </div>
-            <span class="numRow">G</span>
-          </div>
-          <div class="seatRow">
-            <div class="d-flex justify-content-center">
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-              <div class="seat"></div>
-            </div>
-            <span class="numRow">H</span>
-          </div>
-          <div class="seatRow">
-            <div class="d-flex justify-content-center">
-              <div class="letterColumn">1</div>
-              <div class="letterColumn">2</div>
-              <div class="letterColumn">3</div>
-              <div class="letterColumn">4</div>
-              <div class="letterColumn">5</div>
-              <div class="letterColumn">6</div>
-              <div class="letterColumn">7</div>
-              <div class="letterColumn">8</div>
-            </div>
-          </div>
-          
+
         </div>
   
         <div class="col-12 d-flex flex-column justify-content-center align-items-center">
