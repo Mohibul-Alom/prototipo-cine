@@ -16,7 +16,11 @@ export class BookingService {
   }
 
   public getAuditoriumByMovieId(movieId: string){
-    return this.httpClient.get(`${environment.baseUrl}/auditorium/${movieId}`);
+    return this.httpClient.get(`${environment.baseUrl}/auditorium/movieId/${movieId}`);
+  }
+
+  public getAuditorum(id:string){
+    return this.httpClient.get(`${environment.baseUrl}/auditorium/${id}`);
   }
 
 }
