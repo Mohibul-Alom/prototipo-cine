@@ -22,9 +22,6 @@ export interface IapiAuditorium {
     _id: string;
     name: string;
     capacity: number;
-    sessions: Date[];
-    movie:IapiMovie;
-    seats:IapiSeat[];
 }
 
 export interface IapiSeat {
@@ -32,4 +29,13 @@ export interface IapiSeat {
     number: number;
     price: number;
     booked: boolean;
+}
+
+export interface IapiSessions {
+    _id:string,
+    date: Date,
+    movie: IapiMovie;
+    seats: IapiSeat[];
+    auditorium: IapiAuditorium;
+
 }

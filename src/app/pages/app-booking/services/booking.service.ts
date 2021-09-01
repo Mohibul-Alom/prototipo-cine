@@ -10,9 +10,7 @@ export class BookingService {
   constructor(private httpClient: HttpClient) { }
 
   public getMoviesByName(name: string){
-
     return this.httpClient.get(`${environment.baseUrl}/movies/title/${name}`);
-
   }
 
   public getAuditoriumByMovieId(movieId: string){
@@ -22,5 +20,10 @@ export class BookingService {
   public getAuditorum(id:string){
     return this.httpClient.get(`${environment.baseUrl}/auditorium/${id}`);
   }
+
+  public getSessionsByMovieId(movieId:string){
+    return this.httpClient.get(`${environment.baseUrl}/session/movie/${movieId}`)
+  }
+
 
 }
