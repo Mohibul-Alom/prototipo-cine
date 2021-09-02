@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AppHomeComponent } from './pages/app-home/app-home.component';
-import { AppLogInComponent } from './pages/app-log-in/app-log-in.component';
+
 import { AppMovieComponent } from './pages/app-movie/app-movie.component';
 import { AppPageNotFoundComponent } from './pages/app-page-not-found/app-page-not-found.component';
 import { AppProfileComponent } from './pages/app-profile/app-profile.component';
@@ -27,7 +27,8 @@ const routes: Routes = [
     path: 'profile', component:AppProfileComponent,
   },
   {
-    path: 'login', component:AppLogInComponent,
+    path: 'login',
+    loadChildren:() => import('./pages/app-log-in/app-log-in.module').then(module => module.AppLogInModule),
   },
   {
     path: 'register',component:AppRegisterComponent,

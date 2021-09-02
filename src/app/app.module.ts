@@ -9,7 +9,6 @@ import { HeaderComponent } from './core/components/header/header.component';
 
 import { GlobalService } from './services/global.service';
 import { AppProfileComponent } from './pages/app-profile/app-profile.component';
-import { AppLogInComponent } from './pages/app-log-in/app-log-in.component';
 import { AppRegisterComponent } from './pages/app-register/app-register.component';
 import { AppHomeComponent } from './pages/app-home/app-home.component';
 import { AppMovieComponent } from './pages/app-movie/app-movie.component';
@@ -23,7 +22,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     AppComponent,
     HeaderComponent,
     AppProfileComponent,
-    AppLogInComponent,
     AppRegisterComponent,
     AppHomeComponent,
     AppMovieComponent,
