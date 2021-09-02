@@ -36,6 +36,14 @@ img{
   display:block;
 }
 
+
+button{
+  padding: 0;
+  border: none;
+  background: none;
+}
+
+
 .login{
   display:grid;
   grid-template-columns:100%;
@@ -111,8 +119,8 @@ img{
     color:$color-light;
   }
   &__button{
-    display:block;
-   padding:1rem;
+    width:100%;
+    padding:1rem;
     margin:2rem 0;
     background-color:$color;
     color:#fff;
@@ -120,10 +128,10 @@ img{
     text-align:center;
     border-radius:.5rem;
     transition:.3s;
+      &:disabled{
+        background-color:#65bf9782;
+      }
       
-      &:hover{
-        background-color:$color-hover;
-        }
   }
   &__account,&__signin,&__signup{
     font-weight:600;

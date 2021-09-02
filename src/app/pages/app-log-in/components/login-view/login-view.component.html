@@ -1,34 +1,126 @@
-<link
-  href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css"
-  rel="stylesheet"
-/>
+<link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet"/>
+
+<!-- <form (ngSubmit)="onSubmit()" [formGroup]="userLogIn">
+  <fieldset>
+      <label for="name">Name:</label>
+      <input type="text" id="email" formControlName="email">
+  </fieldset>
+  <fieldset>
+      <label for="password">Password:</label>
+      <input type="password" id="password" formControlName="password">
+      
+  </fieldset>
+
+  <button type="submit" [disabled]="!userLogIn.valid">Enviar</button>
+
+
+</form> -->
+
 <div class="d-flex justify-content-center align-items-center">
-    <div class="container">
-        <div class="row justify-content-md-center">
-            <div class="col-12 col-md-6 mt-5">
-                <div class="b-form">
-                    <form action="" class="login__register" id="login-in">
-                        <h1 class="login__title">Sign In</h1>
+  <div class="container">
+      <div class="row justify-content-md-center">
+          <div class="col-12 col-md-6 mt-5">
+              <div class="b-form">
+
+                <form class="login__register" (ngSubmit)="onSubmit()" [formGroup]="userLogIn">
+                  <h1 class="login__title">Sign In</h1>
+                  <fieldset>
+                    <div>
                         <div class="login__box">
                           <i class='bx bx-user login__icon'></i>
-                          <input type="text" placeholder="Username" class="login__input">
+                          <input type="text" id="email" formControlName="email" placeholder="Email" class="login__input">
                         </div>
-                        <div class="login__box">
-                          <i class='bx bx-lock login__icon'></i>
-                          <input type="password" placeholder="Password" class="login__input">
-                        </div>
-                        <a class="login__forgot">Forgot Password? </a> <!--TODO: incorporar el link -->
-                        
-                        <a class="login__button">Sign In</a> <!--TODO: incorporar el link -->
-                        
-                        <div>
-                          <span class="login__account login__account--account">Don't Have an Account? </span>
-                          <a href="/register" class="login__signin login__signin--signup" id="sign-up">Sign Up</a>
-                        </div>
-                      </form>
-                </div>
+                    </div>                   
+                  </fieldset>
+                  <fieldset>
+                    <div>
+                      <div class="login__box mt-4">
+                        <i class='bx bx-lock login__icon'></i>
+                        <input type="password" id="password" formControlName="password" placeholder="Password" class="login__input">
+                      </div>
+                    </div>
+                  </fieldset>
+
+                  <a class="login__forgot">Forgot Password? </a>
+
+                      <button [disabled]="!userLogIn.valid" class="d-flex justify-content-center login__button">Sign In</button>
+                      <div>
+                        <span class="login__account login__account--account">Don't Have an Account? </span>
+                        <a href="/register" class="login__signin login__signin--signup" id="sign-up">Sign Up</a>
+                      </div>
+
+
+                </form>
+
+              </div>
     
             </div>
         </div>
     </div>
 </div>
+
+
+
+
+
+<!-- <div class="d-flex justify-content-center align-items-center">
+    <div class="container">
+        <div class="row justify-content-md-center">
+            <div class="col-12 col-md-6 mt-5">
+                <div class="b-form">
+
+                  <form class="login__register" (ngSubmit)="onSubmit()" [formGroup]="userLogIn">
+                    <h1 class="login__title">Sign In</h1>
+                    <fieldset>
+                      <div class="login__box">
+                        <i class='bx bx-user login__icon'></i>
+                        <input type="text" id="email" formControlName="email" placeholder="Email" class="login__input">
+                      </div>
+                    </fieldset>
+                    <fieldset>
+                      <div class="login__box">
+                        <i class='bx bx-lock login__icon'></i>
+                        <input type="password" id="password" formControlName="password" placeholder="Password" class="login__input">
+                      </div>
+                    </fieldset>
+
+                    <a class="login__forgot">Forgot Password? </a>
+
+                        <button class="login__button">Sign In</button>
+                        
+                         <a class="login__button">Sign In</a> 
+                        
+                        <div>
+                          <span class="login__account login__account--account">Don't Have an Account? </span>
+                          <a href="/register" class="login__signin login__signin--signup" id="sign-up">Sign Up</a>
+                        </div>
+
+
+                  </form>
+
+
+                    <form action="" class="login__register" id="login-in">
+                        <h1 class="login__title">Sign In</h1>
+                        <div class="login__box">
+                          <i class='bx bx-user login__icon'></i>
+                          <input type="text" placeholder="Email" class="login__input">
+                        </div>
+                        <div class="login__box">
+                          <i class='bx bx-lock login__icon'></i>
+                          <input type="password" placeholder="Password" class="login__input">
+                        </div>
+                        <a class="login__forgot">Forgot Password? </a> TODO: incorporar el link 
+                        
+                        <a class="login__button">Sign In</a> TODO: incorporar el link 
+                        
+                        <div>
+                          <span class="login__account login__account--account">Don't Have an Account? </span>
+                          <a href="/register" class="login__signin login__signin--signup" id="sign-up">Sign Up</a>
+                        </div>
+                      </form> 
+                </div>
+    
+            </div>
+        </div>
+    </div>
+</div> -->
