@@ -25,6 +25,7 @@ export interface IapiAuditorium {
 }
 
 export interface IapiSeat {
+    _id: string;
     row: string;
     number: number;
     price: number;

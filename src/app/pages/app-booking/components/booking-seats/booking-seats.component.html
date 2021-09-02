@@ -37,7 +37,7 @@
         <div class="col-12 d-flex flex-column justify-content-center align-items-center"> 
           <div class="seatRow">
             <div *ngFor="let seatRow of seatRows" class="d-flex justify-content-center">
-              <div *ngFor="let seat of seatRow" id={{seat._id}} class="seat text-center">{{seat.row}}{{seat.number}}</div>
+              <div *ngFor="let seat of seatRow" (click)="onSeatClick($event,seat)" id={{seat._id}} [ngClass]="{'occupied' : seat.booked}" class="seat text-center" clickable>{{seat.row}}{{seat.number}}</div>
             </div>
 
           </div>

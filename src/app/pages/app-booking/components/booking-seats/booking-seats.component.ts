@@ -15,11 +15,10 @@ export class BookingSeatsComponent implements OnInit {
   
   public session!:IapiSessions;
 
-  public seatRows:Array<any>[]=[];
+  public seatRows:IapiSeat[][]=[];
+  // public seatsSelected:string[] = [];
+  public seatsSelected:Map<string,string> = new Map<string,string>();
 
-
-  Arr = Array; //Array type captured in a variable
-  num:number = 8;
 
   constructor(
     private route: ActivatedRoute,
@@ -42,16 +41,36 @@ export class BookingSeatsComponent implements OnInit {
 
   }
 
+  public onSeatClick(event:any,seat:IapiSeat):void {
+
+    const seatDiv = (document.getElementById(event.target.id) as HTMLElement);
+    if( seatDiv.classList.contains("seat") && !seatDiv.classList.contains("occupied")){
+
+      seatDiv.classList.toggle("selected");
+      if(seatDiv.classList.contains("selected")){
+        this.seatsSelected.set(event.target.id,`${seat.row}${seat.number}`);
+        console.log(`Seleccionado --> ${seat.row}${seat.number} con id -->${seat._id}`)
+      }else{
+        this.seatsSelected.delete(event.target.id);
+        console.log(`Eliminado seleccion --> ${seat.row}${seat.number}`)
+      }   
+    }
+  }
+
+
   private getSession(id:string):void {
       this.bookingService.getSessionById(id).subscribe(
         (data:any) =>{
           this.trasformDataSession(data);
           this.sliceSeats(this.session.seats);
+          //this.disableOccupiedSeat(this.session.seats); //TODO: not working here
         },
         (err) =>{
           console.log(err);
         }
       )
+
+      //this.disableOccupiedSeat(this.session.seats);
   }
 
   private sliceSeats(seats:IapiSeat[]): void {
@@ -64,7 +83,15 @@ export class BookingSeatsComponent implements OnInit {
     this.seatRows[5] = seats.slice(40,48);
     this.seatRows[6] = seats.slice(48,56);
     this.seatRows[7] = seats.slice(56,64);
-    
+  }
+
+  private disableOccupiedSeat(seats:IapiSeat[]): void {
+    seats.forEach(element => {
+      const seatDiv = (document.getElementById(element._id) as HTMLElement);
+      if(element.booked){
+        seatDiv.classList.toggle("occupied");
+      }
+    });
   }
 
   private trasformDataSession(data:IapiSessions): void{
