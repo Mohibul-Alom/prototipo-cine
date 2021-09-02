@@ -6,6 +6,7 @@ import { AppMovieComponent } from './pages/app-movie/app-movie.component';
 import { AppPageNotFoundComponent } from './pages/app-page-not-found/app-page-not-found.component';
 import { AppProfileComponent } from './pages/app-profile/app-profile.component';
 import { AppRegisterComponent } from './pages/app-register/app-register.component';
+import { AuthGuardService as AuthGuard  } from './services/auth-guard.service';
 
 const routes: Routes = [
   {
@@ -33,6 +34,7 @@ const routes: Routes = [
   },
   {
     path: 'booking',
+    canActivate:[AuthGuard],
     loadChildren:() => import('./pages/app-booking/app-booking.module').then(module => module.AppBookingModule),
   },
   {
