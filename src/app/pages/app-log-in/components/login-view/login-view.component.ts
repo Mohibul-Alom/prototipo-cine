@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
-import { Iuser } from '../../models/iuser';
+import { IloginUser } from '../../models/iLoginUser';
 
 @Component({
   selector: 'app-login-view',
@@ -36,7 +36,7 @@ export class LoginViewComponent implements OnInit {
   public onSubmit(): void {
     this.submitted = true;
 
-    const user: Iuser = {
+    const user: IloginUser = {
       email: this.userLogIn.get('email')?.value,
       password: this.userLogIn.get('password')?.value,
     }
@@ -48,7 +48,7 @@ export class LoginViewComponent implements OnInit {
     }
   }
 
-  private login(user:Iuser): void {
+  private login(user:IloginUser): void {
     
     this.authService.validate(user.email,user.password).subscribe({
       next:data => {
