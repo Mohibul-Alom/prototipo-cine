@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 import { Iuser } from '../../models/iuser';
 
 @Component({
@@ -9,14 +11,15 @@ import { Iuser } from '../../models/iuser';
 })
 export class LoginViewComponent implements OnInit {
 
-
   public userLogIn!: FormGroup;
 
   public submitted: boolean = false;
 
-  public pepe?: string;
-
-  constructor(private formBuilder: FormBuilder) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private authService: AuthService,
+    private route:Router,
+    ) {
     
     this.initForm();
   }
@@ -37,7 +40,7 @@ export class LoginViewComponent implements OnInit {
       email: this.userLogIn.get('email')?.value,
       password: this.userLogIn.get('password')?.value,
     }
-    console.log(user);
+    this.login(user);
 
     if (this.userLogIn.valid) {
       this.userLogIn.reset();
@@ -45,49 +48,18 @@ export class LoginViewComponent implements OnInit {
     }
   }
 
+  private login(user:Iuser): void {
+    
+    this.authService.validate(user.email,user.password).subscribe({
+      next:data => {
+        this.authService.setUserInfo(data);
+        this.route.navigate(['home']);
+      },
+      error: error => {
+        console.log(error);
+      }
 
+    })
 
-
-
-
-
-
-
-  
-  // constructor(private formBuilder:FormBuilder) { }
-  
-  // ngOnInit(): void {
-  //   this.initForm();
-  // }
-
-  // public userLogIn!: FormGroup;
-
-  // public submitted:boolean = false;
-  
-  // public initForm(): void {
-
-  //   this.userLogIn = this.formBuilder.group({
-
-  //     email:['',Validators.required,Validators.email],
-  //     password:['',Validators.required],
-
-  //   });
-
-  // }
-
-  // public onSubmit(): void {
-  //   this.submitted = true;
-
-  //   const user:Iuser={
-  //     email:this.userLogIn.get('email')?.value,
-  //     password:this.userLogIn.get('password')?.value,
-  //   };
-
-  //   if(this.userLogIn.valid){
-  //     console.log(user);
-  //     this.userLogIn.reset();
-  //     this.submitted = false;
-  //   }
-  // }
-
+  }
 }

@@ -13,7 +13,6 @@ export class AuthService {
     let userData = localStorage.getItem('userInfo');
 
     if(userData && JSON.parse(userData)) {
-      console.log(userData);
       return true;
     }
     return false;
@@ -25,8 +24,14 @@ export class AuthService {
   }
 
   public validate(email:string, password:string) {
-    return this.http.post(`${environment.baseUrl}/auth/login`, {'username' : email, 'password' : password}).toPromise()
+    return this.http.post<any>(
+      `${environment.baseUrl}/auth/login`,
+      { 
+        email: email,
+        password: password
+      
+      }
+      
+    );
   }
-
-
 }
