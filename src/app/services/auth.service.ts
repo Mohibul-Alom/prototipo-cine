@@ -32,4 +32,20 @@ export class AuthService {
       }
     );
   }
+
+
+  public register(email:string, password:string, name:string,) {
+
+    return this.http.post<any>(
+      `${environment.baseUrl}/auth/register`,
+      {
+        email: email,
+        password: password,
+        name: name,
+      }
+    );
+
+  }
+
+
 }

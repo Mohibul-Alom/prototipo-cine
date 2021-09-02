@@ -44,7 +44,7 @@ export class RegisterViewComponent implements OnInit {
       password:this.userRegister.get('password')?.value,
     }
 
-    console.log(user);
+    this.register(user);
 
     if(this.userRegister.valid){
       this.userRegister.reset();
