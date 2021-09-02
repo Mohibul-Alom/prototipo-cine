@@ -5,7 +5,6 @@ import { AppHomeComponent } from './pages/app-home/app-home.component';
 import { AppMovieComponent } from './pages/app-movie/app-movie.component';
 import { AppPageNotFoundComponent } from './pages/app-page-not-found/app-page-not-found.component';
 import { AppProfileComponent } from './pages/app-profile/app-profile.component';
-import { AppRegisterComponent } from './pages/app-register/app-register.component';
 import { AuthGuardService as AuthGuard  } from './services/auth-guard.service';
 
 const routes: Routes = [
@@ -31,7 +30,8 @@ const routes: Routes = [
     loadChildren:() => import('./pages/app-log-in/app-log-in.module').then(module => module.AppLogInModule),
   },
   {
-    path: 'register',component:AppRegisterComponent,
+    path: 'register',
+    loadChildren:() => import('./pages/app-register/app-register.module').then(module => module.AppRegisterModule),
   },
   {
     path: 'booking',
