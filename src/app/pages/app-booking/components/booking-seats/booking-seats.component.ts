@@ -11,7 +11,7 @@ import { BookingService } from '../../services/booking.service';
 })
 export class BookingSeatsComponent implements OnInit {
 
-  private selectedOption!:IappSession;
+  private sessionId!:string;
   
   public session!:IapiSessions;
 
@@ -28,16 +28,9 @@ export class BookingSeatsComponent implements OnInit {
   ngOnInit(): void {
 
     this.route.queryParams.subscribe((params) =>{
-      this.selectedOption = {
-        id: params['idAuditorium'],
-        day:params["day"],
-        month:params["month"],
-        year:params["year"],
-        hour:params["hour"],
-        minute: params["minute"],
-      }
+      this.sessionId = params['idSession']
     })
-    this.getSession(this.selectedOption.id);
+    this.getSession(this.sessionId);
 
   }
 
@@ -63,14 +56,11 @@ export class BookingSeatsComponent implements OnInit {
         (data:any) =>{
           this.trasformDataSession(data);
           this.sliceSeats(this.session.seats);
-          //this.disableOccupiedSeat(this.session.seats); //TODO: not working here
         },
         (err) =>{
           console.log(err);
         }
       )
-
-      //this.disableOccupiedSeat(this.session.seats);
   }
 
   private sliceSeats(seats:IapiSeat[]): void {
@@ -83,15 +73,6 @@ export class BookingSeatsComponent implements OnInit {
     this.seatRows[5] = seats.slice(40,48);
     this.seatRows[6] = seats.slice(48,56);
     this.seatRows[7] = seats.slice(56,64);
-  }
-
-  private disableOccupiedSeat(seats:IapiSeat[]): void {
-    seats.forEach(element => {
-      const seatDiv = (document.getElementById(element._id) as HTMLElement);
-      if(element.booked){
-        seatDiv.classList.toggle("occupied");
-      }
-    });
   }
 
   private trasformDataSession(data:IapiSessions): void{
