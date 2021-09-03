@@ -8,7 +8,6 @@ import { HeaderComponent } from './core/components/header/header.component';
 
 
 import { GlobalService } from './services/global.service';
-import { AppProfileComponent } from './pages/app-profile/app-profile.component';
 import { AppHomeComponent } from './pages/app-home/app-home.component';
 import { AppPageNotFoundComponent } from './pages/app-page-not-found/app-page-not-found.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -19,7 +18,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
   declarations: [
     AppComponent,
     HeaderComponent,
-    AppProfileComponent,
     AppHomeComponent,
     AppPageNotFoundComponent
   ],
