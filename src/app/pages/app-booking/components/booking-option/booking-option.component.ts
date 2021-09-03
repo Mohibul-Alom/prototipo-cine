@@ -106,6 +106,10 @@ export class BookingOptionComponent implements OnInit {
 
     this.bookingService.getSessionsByMovieId(id).subscribe(
       (data: any)=>{
+
+        //custom funtion for shorting array
+        data.sort(this.compare);
+
         data.forEach((element:IapiSessions) => {
           this.trasformDataSession(element.date,element._id);
         });
@@ -149,6 +153,12 @@ export class BookingOptionComponent implements OnInit {
 
       this.sessions.push(auxAppSession);
       return auxAppSession;
+  }
+
+  private compare(a:IapiSessions,b:IapiSessions):number{
+
+    return new Date(a.date).getTime() - new Date(b.date).getTime();
+
   }
 
   
