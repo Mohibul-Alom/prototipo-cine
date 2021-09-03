@@ -40,16 +40,12 @@ export class BookingSeatsComponent implements OnInit {
 
       seatDiv.classList.toggle("selected");
       if(seatDiv.classList.contains("selected")){
-        this.seatsSelected.push(seat._id);
-        console.log(`Seleccionado --> ${seat.row}${seat.number} con id -->${seat._id}`)
+        this.seatsSelected.push(seat._id);       
       }else{
-
         const index = this.seatsSelected.indexOf(seat._id);
         if(index > -1){
           this.seatsSelected.splice(index, 1);
         }
-
-        console.log(`Eliminado seleccion --> ${seat.row}${seat.number}`);
       }   
     }
     console.log(this.seatsSelected)
@@ -58,12 +54,12 @@ export class BookingSeatsComponent implements OnInit {
 
   public buySeats(){
 
-    let userData = localStorage.getItem('userInfo');
+    let userData = localStorage.getItem('userInfo'); //TODO: really?? 😒😒
     
     if(userData){
       const user:IapiUser = JSON.parse(userData);
 
-              //TODO: 😱😱😱 arregla esta chapuza por favor!!😱😱😱
+              //TODO: 😱😱😱 ¡¡arregla esta chapuza por favor!!😱😱😱
       
       this.seatsSelected.forEach((seat)=>{
         this.bookingService.postTickets(

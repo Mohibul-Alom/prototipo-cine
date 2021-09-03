@@ -19,6 +19,7 @@ export class AuthService {
 
   }
 
+  //TODO: 😱😱😱 ¡¡arregla esta chapuza por dios!!😱😱😱 pista save session with JWT
   public setUserInfo(user:any){
     localStorage.setItem('userInfo', JSON.stringify(user));
   }

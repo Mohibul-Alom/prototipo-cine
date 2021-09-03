@@ -13,7 +13,8 @@ export class AuthGuardService implements CanActivate {
     private route: Router,
   ) { }
   
-
+  //TODO: puedes mejorar esto leyendo mas la documentacion 😉😉
+  
   canActivate(){
     if(this.authService.isAuthenticated()){
       return true;
