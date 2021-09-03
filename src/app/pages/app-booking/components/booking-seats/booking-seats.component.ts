@@ -74,10 +74,10 @@ export class BookingSeatsComponent implements OnInit {
           `${seat}`
           ).subscribe({
             next:data => {
-              console.log("ticket-->",data);
+              
               this.bookingService.addTicketUser(user._id,data._id).subscribe({
                 next:data => {
-                  console.log("user ticket-->",data);
+                  
                   this.nextRoute.navigate(['profile']);
                 },
                 error:error => {

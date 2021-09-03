@@ -33,10 +33,28 @@ export interface IapiSeat {
 }
 
 export interface IapiSessions {
-    _id:string,
-    date: Date,
+    _id:string;
+    date: Date;
     movie: IapiMovie;
     seats: IapiSeat[];
     auditorium: IapiAuditorium;
+
+}
+
+export interface IapiTicket {
+
+    hasPaid: string;
+    timeLeft: string;
+    day: string;
+    auditorium: string; 
+    seat: string;
+}
+
+export interface IapiUser {
+
+    _id: string;
+    email:string;
+    name:string;
+    role:string;
 
 }
