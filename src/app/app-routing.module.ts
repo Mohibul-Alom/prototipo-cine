@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AppHomeComponent } from './pages/app-home/app-home.component';
 
-import { AppMovieComponent } from './pages/app-movie/app-movie.component';
+
 import { AppPageNotFoundComponent } from './pages/app-page-not-found/app-page-not-found.component';
 import { AppProfileComponent } from './pages/app-profile/app-profile.component';
 import { AuthGuardService as AuthGuard  } from './services/auth-guard.service';
@@ -16,10 +16,6 @@ const routes: Routes = [
 
   {
     path: 'home', component: AppHomeComponent,
-  },
-
-  {
-    path: 'movie', component: AppMovieComponent,
   },
 
   {
