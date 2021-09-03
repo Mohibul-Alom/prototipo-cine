@@ -25,5 +25,28 @@ export class BookingService {
     return this.httpClient.get(`${environment.baseUrl}/session/${id}`);
   }
 
+  public postTickets(hasPaid:string,timeLeft:string,day:string,auditorium:string,seat:string ){
+    return this.httpClient.post<any>(
+      `${environment.baseUrl}/ticket/create`,
+      {
+        hasPaid,
+        timeLeft,
+        day,
+        auditorium,
+        seat
+      }
+    );
+  }
+
+  public addTicketUser(userId:string,ticketId:string){
+    return this.httpClient.put<any>(
+      `${environment.baseUrl}/user/add-ticket`,
+      {
+        userId,
+        ticketId
+      }
+    )
+  }
+
 
 }

@@ -46,7 +46,7 @@
   
         <div class="col-12 d-flex flex-column justify-content-center align-items-center">
           <!-- <a class="pay__button">Pay Now!</a> -->
-          <button [disabled]="seatsSelected.size === 0" onclick="pay()" class="pay__button">Pay Now!</button> 
+          <button [disabled]="seatsSelected.length === 0" (click)="buySeats()" class="pay__button">Buy Now!</button> 
         </div>
   
       </div>

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { IapiAuditorium, IapiSeat, IapiSessions } from 'src/app/models/iapi';
-import { IappSession } from 'src/app/models/iapp';
+import { ActivatedRoute, Router } from '@angular/router';
+import { IapiSeat, IapiSessions, IapiUser } from 'src/app/models/iapi';
 import { BookingService } from '../../services/booking.service';
 
 @Component({
@@ -16,13 +15,13 @@ export class BookingSeatsComponent implements OnInit {
   public session!:IapiSessions;
 
   public seatRows:IapiSeat[][]=[];
-  // public seatsSelected:string[] = [];
-  public seatsSelected:Map<string,string> = new Map<string,string>();
+  public seatsSelected:String[] = [];
 
 
   constructor(
     private route: ActivatedRoute,
     private bookingService: BookingService,
+    private nextRoute:Router,
   ) { }
 
   ngOnInit(): void {
@@ -41,13 +40,61 @@ export class BookingSeatsComponent implements OnInit {
 
       seatDiv.classList.toggle("selected");
       if(seatDiv.classList.contains("selected")){
-        this.seatsSelected.set(event.target.id,`${seat.row}${seat.number}`);
+        this.seatsSelected.push(seat._id);
         console.log(`Seleccionado --> ${seat.row}${seat.number} con id -->${seat._id}`)
       }else{
-        this.seatsSelected.delete(event.target.id);
-        console.log(`Eliminado seleccion --> ${seat.row}${seat.number}`)
+
+        const index = this.seatsSelected.indexOf(seat._id);
+        if(index > -1){
+          this.seatsSelected.splice(index, 1);
+        }
+
+        console.log(`Eliminado seleccion --> ${seat.row}${seat.number}`);
       }   
     }
+    console.log(this.seatsSelected)
+  }
+
+
+  public buySeats(){
+
+    let userData = localStorage.getItem('userInfo');
+    
+    if(userData){
+      const user:IapiUser = JSON.parse(userData);
+
+              //TODO: 😱😱😱 arregla esta chapuza por favor!!😱😱😱
+      
+      this.seatsSelected.forEach((seat)=>{
+        this.bookingService.postTickets(
+          "false",
+          "30",
+          `${this.session.date}`,
+          `${this.session.auditorium}`,
+          `${seat}`
+          ).subscribe({
+            next:data => {
+              console.log("ticket-->",data);
+              this.bookingService.addTicketUser(user._id,data._id).subscribe({
+                next:data => {
+                  console.log("user ticket-->",data);
+                  this.nextRoute.navigate(['profile']);
+                },
+                error:error => {
+                  console.log(error);
+                }
+              })
+
+            },
+            error:error => {
+              console.log(error);
+            }
+          })
+
+      })
+
+    }
+
   }
 
 

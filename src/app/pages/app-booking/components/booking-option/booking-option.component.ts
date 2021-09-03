@@ -53,9 +53,7 @@ export class BookingOptionComponent implements OnInit {
 
 
   public selectedOption(userSelected:IappSession){
-
-    console.log(userSelected);
-
+    
     const {id, day, month, year, hour, minute } = userSelected;
 
     this.isSessionSelected = true;
