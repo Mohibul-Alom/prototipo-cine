@@ -45,7 +45,7 @@ export interface IapiTicket {
 
     hasPaid: string;
     timeLeft: string;
-    day: string;
+    day: Date;
     auditorium: IapiAuditorium; 
     seat: IapiSeat;
     movie:IapiMovie;

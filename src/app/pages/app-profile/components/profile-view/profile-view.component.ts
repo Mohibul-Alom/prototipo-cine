@@ -29,7 +29,7 @@ export class ProfileViewComponent implements OnInit {
           data.tickets.forEach((ticket:string) => {
             this.getTickets(ticket);
           });
-          
+
           console.log(this.userTickets);
 
         },
@@ -64,7 +64,7 @@ export class ProfileViewComponent implements OnInit {
     const auxTicket = {
       hasPaid, 
       timeLeft, 
-      day, 
+      day: new Date(day), 
       auditorium, 
       seat, 
       movie
