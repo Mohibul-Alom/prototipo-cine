@@ -25,7 +25,7 @@ export class BookingService {
     return this.httpClient.get(`${environment.baseUrl}/session/${id}`);
   }
 
-  public postTickets(hasPaid:string,timeLeft:string,day:string,auditorium:string,seat:string ){
+  public postTickets(hasPaid:string,timeLeft:string,day:string,auditorium:string,seat:string,movie:string ){
     return this.httpClient.post<any>(
       `${environment.baseUrl}/ticket/create`,
       {
@@ -33,7 +33,8 @@ export class BookingService {
         timeLeft,
         day,
         auditorium,
-        seat
+        seat,
+        movie
       }
     );
   }

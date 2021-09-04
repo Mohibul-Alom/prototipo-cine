@@ -48,7 +48,6 @@ export class BookingSeatsComponent implements OnInit {
         }
       }   
     }
-    console.log(this.seatsSelected)
   }
 
 
@@ -67,7 +66,8 @@ export class BookingSeatsComponent implements OnInit {
           "30",
           `${this.session.date}`,
           `${this.session.auditorium}`,
-          `${seat}`
+          `${seat}`,
+          `${this.session.movie}`,
           ).subscribe({
             next:data => {
               
